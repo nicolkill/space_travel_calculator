@@ -25,3 +25,10 @@ iex:
 
 bash:
 	docker compose run --rm app sh
+
+routes:
+	docker compose exec app mix phx.routes
+
+format:
+	docker compose exec app mix format
+
