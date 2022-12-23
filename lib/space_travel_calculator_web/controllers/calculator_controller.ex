@@ -7,6 +7,9 @@ defmodule SpaceTravelCalculatorWeb.CalculatorController do
   alias SpaceTravelCalculator.Constants
   alias SpaceTravelCalculator.Calculator
 
+  @land :land
+  @launch :launch
+
   def health(conn, _) do
     conn
     |> put_status(200)
