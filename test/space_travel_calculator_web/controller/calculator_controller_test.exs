@@ -2,9 +2,9 @@ defmodule SpaceTravelCalculatorWeb.CalculatorControllerTest do
   use SpaceTravelCalculatorWeb.ConnCase
 
   # space ships
-  @apollo_11_csm 28801
-  @mission_on_mars 14606
-  @passenger_ship 75432
+  @apollo_11_csm 28_801
+  @mission_on_mars 14_606
+  @passenger_ship 75_432
 
   # planet gravities
   @earth_gravity 9.807
@@ -164,13 +164,13 @@ defmodule SpaceTravelCalculatorWeb.CalculatorControllerTest do
              }
     end
 
-    test "To Venus", %{conn: conn} do
+    test "Apollo 11 To Venus", %{conn: conn} do
       conn =
         post(
           conn,
           Routes.calculator_path(conn, :calculate),
           %{
-            ship_mass: @mission_on_mars,
+            ship_mass: @apollo_11_csm,
             route: [
               %{
                 type: "launch",
@@ -197,13 +197,13 @@ defmodule SpaceTravelCalculatorWeb.CalculatorControllerTest do
              }
     end
 
-    test "To Saturn", %{conn: conn} do
+    test "Apollo 11 To Saturn", %{conn: conn} do
       conn =
         post(
           conn,
           Routes.calculator_path(conn, :calculate),
           %{
-            ship_mass: @mission_on_mars,
+            ship_mass: @apollo_11_csm,
             route: [
               %{
                 type: "launch",

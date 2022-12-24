@@ -1,4 +1,17 @@
 defmodule SpaceTravelCalculator.Constants do
+  @type planet :: %{
+          gravity: float(),
+          measure: String.t()
+        }
+  @type planets :: %{
+          earth: planet(),
+          moon: planet(),
+          mars: planet(),
+          venus: planet(),
+          saturn: planet()
+        }
+
+  @spec planets() :: planets()
   def planets do
     %{
       earth: %{
