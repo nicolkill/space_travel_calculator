@@ -15,17 +15,19 @@ defmodule SpaceTravelCalculator.Calculator do
     |> Enum.reverse()
     |> Enum.reduce(0, fn step, acc ->
       fuel =
-        ship_mass + acc
+        (ship_mass + acc)
         |> calculate_step(step)
         |> balance_fuel_with_weight(step)
+
       acc + fuel
     end)
   end
 
   defp calculate_step(mass, {:launch, gravity}),
-       do: trunc(mass * gravity * 0.042 - 33)
+    do: trunc(mass * gravity * 0.042 - 33)
+
   defp calculate_step(mass, {:land, gravity}),
-       do: trunc(mass * gravity * 0.033 - 42)
+    do: trunc(mass * gravity * 0.033 - 42)
 
   defp balance_fuel_with_weight(calculated_fuel, step) do
     extra_fuel = balance(calculated_fuel, step)
@@ -34,9 +36,9 @@ defmodule SpaceTravelCalculator.Calculator do
 
   defp balance(residual_weight, step, sum \\ 0) do
     fuel = calculate_step(residual_weight, step)
-    if fuel > 0,
-       do: balance(fuel, step, sum + fuel),
-       else: sum
-  end
 
+    if fuel > 0,
+      do: balance(fuel, step, sum + fuel),
+      else: sum
+  end
 end

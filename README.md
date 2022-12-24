@@ -1,18 +1,92 @@
 # SpaceTravelCalculator
 
-To start your Phoenix server:
+This mini app its for calculate the fuel used in a travel to another planets
 
-  * Install dependencies with `mix deps.get`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+Calculate the fuel based in the launch and land, so the fuel its the exact amount for all the launch an lands
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Prerequisites
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+- Docker with Compose
+- Maketool (already in linux and mac)
 
-## Learn more
+## The first step (Building and Dockerize)
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+With maketool you can excecute all commands easy, with just `make` all be enough to create all necessary parts
+
+## How to run this?
+
+You can run the code in 3 ways
+
+With preloaded bodies
+- Mix command (`make calculate`)
+- Using tests (`make testing`)
+  
+With dynamic
+- Phoenix Server (`make up`)
+
+### Mix command
+
+Using `make calculate` you can run all math
+
+You can edit from `/lib/space_travel_calculator/mix/tasks/calculate.ex` and change the params to another ones
+
+### Using tests
+
+Using `make testing` you can run the examples listed on the doc
+
+### Phoenix Server
+
+Exist 2 api routes
+
+To get some plates and their gravity
+
+```
+Call: GET /api/planets
+
+Response: 
+{
+    "earth": {
+        "gravity": 9.807, 
+        "measure": "m/s^2"
+    },
+    "mars": {
+        "gravity": 3.711, 
+        "measure": "m/s^2"
+    },
+    "moon": {
+        "gravity": 1.62, 
+        "measure": "m/s^2"
+    }
+}
+```
+
+To calculate based in a route
+
+```
+POST /api/calculate {
+        "ship_mass": 28801,
+        "route": [
+          %{
+            "type": "launch",
+            "gravity": 9.807
+          },
+          %{
+            "type": "land",
+            "gravity": 1.62
+          },
+          %{
+            "type": "launch",
+            "gravity": 1.62
+          },
+          %{
+            "type": "land",
+            "gravity": 9.807
+          }
+        ]
+    }
+
+Response: 
+{
+    "used_fuel": 51898
+}
+```

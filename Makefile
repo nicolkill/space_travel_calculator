@@ -21,14 +21,17 @@ testing:
 	docker compose run --rm -e "MIX_ENV=test" app mix test
 
 iex:
-	docker compose exec app iex -S mix
+	docker compose run --rm app iex -S mix
 
 bash:
 	docker compose run --rm app sh
 
+calculate:
+	docker compose run --rm app mix calculate
+
 routes:
-	docker compose exec app mix phx.routes
+	docker compose run --rm app mix phx.routes
 
 format:
-	docker compose exec app mix format
+	docker compose run --rm app mix format
 

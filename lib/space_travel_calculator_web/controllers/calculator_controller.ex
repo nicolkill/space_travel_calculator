@@ -20,10 +20,11 @@ defmodule SpaceTravelCalculatorWeb.CalculatorController do
     |> json(Constants.planets())
   end
 
-  def calculate(conn, %{"ship_mass" => ship_mass,"route" => route}) do
-    route = Enum.map(route, fn %{"gravity" => gravity, "type" => type} ->
-      {String.to_atom(type), gravity}
-    end)
+  def calculate(conn, %{"ship_mass" => ship_mass, "route" => route}) do
+    route =
+      Enum.map(route, fn %{"gravity" => gravity, "type" => type} ->
+        {String.to_atom(type), gravity}
+      end)
 
     used_fuel = Calculator.calculate(ship_mass, route)
 
@@ -31,5 +32,4 @@ defmodule SpaceTravelCalculatorWeb.CalculatorController do
     |> put_status(200)
     |> json(%{used_fuel: used_fuel})
   end
-
 end
