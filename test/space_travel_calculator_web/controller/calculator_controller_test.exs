@@ -1,8 +1,6 @@
 defmodule SpaceTravelCalculatorWeb.CalculatorControllerTest do
   use SpaceTravelCalculatorWeb.ConnCase
 
-  alias SpaceTravelCalculator.Constants
-
   # space ships
   @apollo_11_csm 28801
   @mission_on_mars 14606

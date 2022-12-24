@@ -7,9 +7,6 @@ defmodule SpaceTravelCalculatorWeb.CalculatorController do
   alias SpaceTravelCalculator.Constants
   alias SpaceTravelCalculator.Calculator
 
-  @land :land
-  @launch :launch
-
   def health(conn, _) do
     conn
     |> put_status(200)
@@ -25,7 +22,7 @@ defmodule SpaceTravelCalculatorWeb.CalculatorController do
 
   def calculate(conn, %{"ship_mass" => ship_mass,"route" => route}) do
     route = Enum.map(route, fn %{"gravity" => gravity, "type" => type} ->
-      {String.to_existing_atom(type), gravity}
+      {String.to_atom(type), gravity}
     end)
 
     used_fuel = Calculator.calculate(ship_mass, route)
